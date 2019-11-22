@@ -192,7 +192,7 @@
                 }
                 this.userlist = res.data.users
                 this.total =res.data.total
-                console.log(res)
+                // console.log(res)
             },
             // 监听 pagesize 改变的事件
             handleSizeChange(newSize) {
@@ -202,7 +202,7 @@
             },
             // 监听 页码值 改变的事件
             handleCurrentChange(newPage) {
-                console.log(newPage)
+                // console.log(newPage)
                 this.queryInfo.pagenum = newPage
                 this.getUserList()
             },
@@ -241,6 +241,7 @@
             async showEditDialog(id) {
                 // console.log(id)
                 const {data: res} = await this.$http.get('users/' + id)
+                console.log(res)
                 if(res.meta.status !== 200){
                     return this.$message.error('查询用户信息失败！')
                 }
@@ -249,7 +250,7 @@
             },
             // 监听修改用户对话框的关闭事件
             editDialogClosed(){
-                this.$refs.editFormRef.resetField()
+                this.$refs.editFormRef.resetFields()
             },
             // 修改用户信息并提交
             editUserInfo(){
@@ -260,6 +261,7 @@
                         email: this.editForm.email,
                         mobile: this.editForm.mobile
                     })
+                    console.log(this.editForm)
                     if(res.meta.status !== 200){
                         return this.$message.error('更新用户失败！')
                     }
